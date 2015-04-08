@@ -14,8 +14,11 @@
         <p class="userList">Users</p>
       </div>
       <div class="bottom">
-      <form>Username:<input type="text" name="Username"></form>
-      <form>Tweet:<input type="text" name="Tweet"></form>
+      <form class ="newUser">
+        Username:<input type="text" name="username" class="userbox">
+        Tweet:<input type="text" name="tweet" class="msgbox">
+        <button type="button" class="submit">Submit</button>
+      </form>
     </div>
       <div class="tweetbox">
         </div>
@@ -23,38 +26,53 @@
     <script>
 
       $(document).ready(function(){
-        for(var i = 0; i < users.length; i++) {
-        var $currentUser = $('<button class="users '+ users[i] +'"></button>');
-            $currentUser.text(users[i]);
-            $currentUser.appendTo('.userList');
-          }
+        //Uses moment.js to format timestamps.
+        var time = moment().calendar();
 
+        //Adds buttons for each username to the userList box.
+        for(var i = 0; i < users.length; i++) {
+          var $currentUser = $('<button class="users '+ users[i] +'"></button>');
+          $currentUser.text(users[i]);
+          $currentUser.appendTo('.userList');
+        }
+
+       //Continually appends new tweets to the feed.
         var $feed = $('.tweetbox');
         $feed.html('');
-
-        var index = streams.home.length -10;
+        var index = 0;
         var tweetFeed = setInterval(function() {
           var tweet = streams.home[index];
-          var time = moment().calendar();
           var $tweet = $('<div class="tweet"></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message + "  " + time);
-          $tweet.appendTo($feed);
+          $tweet.prependTo($feed);
           index += 1;
 
         }, 2000);
 
+        //Changes the feed to show all tweets from one user when clicked.
         $(".users").click(function() {
           clearInterval(tweetFeed);
-          var username = $(this).attr('class').split(' ')[1];
           $feed.html('');
-          for (var tweet in streams.users.username) {
-            var time = moment().calendar();
+          var username = $(this).attr('class').split(' ')[1];
+          var stream = streams.users[username];
+          for (var i = 0; i < stream.length; i++) {
+            var tweet = stream[i];
             var $tweet = $('<div class="tweet"></div>');
-            $tweet.text('@' + username + ': ' + tweet + "  " + time);
+            $tweet.text('@' + tweet.user + ':' + tweet.message + ' ' + time);
             $tweet.appendTo($feed);
           }
-        });
 
+        });
+        //Allows users to tweet using form.
+        $(".submit").click(function() {
+          if (($(".userbox").val() !== "") && ($(".msgbox").val() !== "")) {
+            var user = $(".userbox").val();
+            var msg = $(".msgbox").val();
+            var $tweet = $('<div class="tweet"></div>');
+            $tweet.text('@' + " " + user + " " + ":" + msg + " " + time);
+            $tweet.prependTo($feed);
+          }
+        });
       });
 
     </script>
