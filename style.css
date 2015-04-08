@@ -1,0 +1,88 @@
+
+p {
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  position: center;
+}
+
+div {
+  border-radius: 50px;
+}
+
+button {
+margin: 10px auto;
+display: block;
+height: 20px;
+font-family: Verdana;
+}
+
+form {
+  margin: 0 auto;
+  display: block;
+}
+
+.header {
+  position: relative;
+  width: 95%;
+  margin-top: 5px;
+  height: 60px;
+  margin-bottom: 10px;
+  background-color: blue;
+  padding: 20px;
+  border: 5px solid black;
+  clear: top;
+}
+
+.left {
+  position: relative;
+  float: left;
+  margin-top: 10px;
+  width: 20%;
+  height: 300px;
+  background-color: #B9D7D9;
+  margin-bottom: 10px;
+  border: 5px solid black;
+  margin-right: 30px;
+  text-align: center;
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.bottom {
+  position: relative;
+  float: right;
+  margin-top: 10px;
+  width: 20%;
+  height: 300px;
+  background-color: #B9D7D9;
+  margin-bottom: 10px;
+  border: 5px solid black;
+  margin-right: 30px;
+  text-align: center;
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.userList {
+  font-size: 40px;
+  margin: 5px auto;
+  float: top;
+}
+
+.tweetbox {
+  position: relative;
+  display: block;
+  margin: 0px auto;
+  width: 50%;
+  height: 100px;
+  padding: 10px;
+
+}
+
+.tweet {
+  position: relative;
+  background-color: #33CCFF;
+  border: 5px solid black;
+  padding: 10px;
+  margin: 5px;
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.4);
+}
